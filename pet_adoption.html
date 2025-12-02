@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pet Adoption Center</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f3f6fa;
+        }
+        header {
+            background: #2d6a4f;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background: #40916c;
+            padding: 12px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .hero {
+            background: url('https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=1400&q=80') no-repeat center/cover;
+            height: 320px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 2.2rem;
+            text-shadow: 2px 2px 4px #000;
+        }
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px;
+        }
+        .pet-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            display: flex;
+            gap: 20px;
+        }
+        .pet-card img {
+            width: 180px;
+            height: 150px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+        .adopt-btn {
+            background: #2d6a4f;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        footer {
+            background: #1b4332;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+        }
+        #form-section {
+            display: none;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        #submit-btn {
+            background: #1b4332;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Happy Paws - Pet Adoption Center</h1>
+    </header>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#pets">Available Pets</a>
+        <a href="#register">Adopt</a>
+    </nav>
+
+    <div class="hero">Find Your New Best Friend ❤️</div>
+
+    <div class="container" id="pets">
+        <h2>Available Pets</h2>
+
+        <div class="pet-card">
+            <img src="https://www.hepper.com/wp-content/uploads/2021/11/golden-retriever_Shutterstock.jpg" />
+            <div>
+                <h3>Buddy (Dog)</h3>
+                <p>Age: 2 years</p>
+                <p>Friendly and energetic Labrador.</p>
+                <button class="adopt-btn" onclick="openForm('Buddy - Dog')">Adopt</button>
+            </div>
+        </div>
+
+        <div class="pet-card">
+            <img src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=700&q=80" />
+            <div>
+                <h3>Milo (Cat)</h3>
+                <p>Age: 1 year</p>
+                <p>Playful kitten who loves cuddles.</p>
+                <button class="adopt-btn" onclick="openForm('Milo - Cat')">Adopt</button>
+            </div>
+        </div>
+
+        <div class="pet-card">
+            <img src="https://thumbs.dreamstime.com/b/lop-rabbit-6-months-old-18673062.jpg" />
+            <div>
+                <h3>Snowy (Rabbit)</h3>
+                <p>Age: 6 months</p>
+                <p>Calm rabbit who loves quiet spaces.</p>
+                <button class="adopt-btn" onclick="openForm('Snowy - Rabbit')">Adopt</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="form-section">
+        <h2>Pet Adoption Form</h2>
+        <form id="adoptForm">
+            <label>Name:</label>
+            <input type="text" id="name" required>
+
+            <label>Email:</label>
+            <input type="email" id="email" required>
+
+            <label>Phone:</label>
+            <input type="text" id="phone" required>
+
+            <label>Selected Pet:</label>
+            <input type="text" id="selected-pet" readonly>
+
+            <button id="submit-btn">Submit</button>
+        </form>
+
+        <p id="success-msg" style="color: green; font-weight: bold;"></p>
+    </div>
+
+    <footer>
+        <p>© 2025 Happy Paws | Adopt Love, Adopt Life</p>
+    </footer>
+
+    <script>
+        function openForm(petName) {
+            document.getElementById('success-msg').textContent = '';
+            document.getElementById('form-section').style.display = 'block';
+            document.getElementById('selected-pet').value = petName;
+            window.location = '#form-section';
+        }
+
+        document.getElementById('adoptForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const pet = document.getElementById('selected-pet').value;
+
+            document.getElementById('success-msg').textContent = 
+                `Congratulations ${name}! You have successfully applied to adopt ${pet}. Our team will contact you soon.`;
+
+            document.getElementById('adoptForm').reset();
+        });
+    </script>
+</body>
+</html>
